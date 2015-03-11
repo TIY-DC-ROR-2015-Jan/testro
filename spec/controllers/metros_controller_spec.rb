@@ -18,10 +18,34 @@ describe MetrosController do
     expect(json.last["name"]).to eq "Metro 5"
   end
 
+  it "can favorite metros" do
+    user = FactoryGirl.create :user
+    login user
+
+    metro = FactoryGirl.create :metro
+
+    post :favorite, station_code: metro.code
+    expect(response.code.to_i).to eq 200
+    expect(user.favorite_metros).to include metro
+  end
+
+  it "rejects favorites for non-existant metros" do
+    user = FactoryGirl.create :user
+    login user
+
+    post :favorite, station_code: "NOTASTATION"
+    expect(response.code.to_i).to eq 404
+  end
+
+  it "requires login before favoriting" do
+    metro = FactoryGirl.create :metro
+
+    post :favorite, station_code: metro.code
+    expect(response.code.to_i).to eq 401
+  end
+
   it "can list favorited metros"
-  it "can favorite metros"
   it "can unfavorite metros"
-  it "requires login to see favorite metros"
   it "handles bad requests gracefully"
   # favorite one that doesn't exist
   # unfavorite one not favorited

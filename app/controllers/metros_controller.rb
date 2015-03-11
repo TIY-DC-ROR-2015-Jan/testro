@@ -1,0 +1,2 @@
+class MetrosController < ApplicationController
+end

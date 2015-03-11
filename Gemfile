@@ -17,6 +17,7 @@ gem 'httparty'
 
 group :development, :test do
   gem 'better_errors'
+  gem 'factory_girl_rails'
   gem 'pry-rails'
   gem 'quiet_assets'
   gem 'rspec-rails'

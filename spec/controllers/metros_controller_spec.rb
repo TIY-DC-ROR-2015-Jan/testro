@@ -3,7 +3,7 @@ require 'rails_helper'
 describe MetrosController do
   it "can list all the metros" do
     1.upto 5 do |i|
-      Metro.create! name: "Metro #{i}", code: "C#{i}"
+      FactoryGirl.create :metro, name: "Metro #{i}", code: "C#{i}"
     end
 
     get :index

@@ -19,5 +19,6 @@ group :development, :test do
   gem 'better_errors'
   gem 'pry-rails'
   gem 'quiet_assets'
+  gem 'rspec-rails'
   gem 'spring'
 end

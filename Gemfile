@@ -15,6 +15,8 @@ gem 'devise'
 gem 'figaro'
 gem 'httparty'
 
+gem 'haversine'
+
 group :development, :test do
   gem 'better_errors'
   gem 'factory_girl_rails'

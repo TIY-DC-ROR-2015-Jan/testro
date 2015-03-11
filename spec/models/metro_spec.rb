@@ -1,5 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Metro, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Metro do
+  it "can sync from the WMATA API" do
+    Metro.sync_from_api!
+    expect(Metro.count).to eq 95
+  end
 end

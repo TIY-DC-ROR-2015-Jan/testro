@@ -46,7 +46,19 @@ describe MetrosController do
     expect(response.code.to_i).to eq 302
   end
 
-  it "can list favorited metros"
+  it "can list favorited metros" do
+    user = FactoryGirl.create :user
+    login user
+
+    5.times { FactoryGirl.create :metro }
+    favs = Metro.all.sample 3
+    favs.each { |m| user.add_favorite_metro m }
+
+    get :favorites
+    expect(response_json.count).to eq 3
+    # ...
+  end
+
   it "can unfavorite metros"
   it "handles bad requests gracefully"
   # favorite one that doesn't exist

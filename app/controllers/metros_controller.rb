@@ -10,4 +10,9 @@ class MetrosController < ApplicationController
     current_user.add_favorite_metro metro
     head :ok
   end
+
+  def favorites
+    @metros = current_user.favorite_metros
+    render :index
+  end
 end

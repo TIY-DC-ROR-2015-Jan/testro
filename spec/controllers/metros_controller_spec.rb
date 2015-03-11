@@ -1,14 +1,16 @@
 require 'rails_helper'
 
 describe MetrosController do
+  render_views
+
   it "can list all the metros" do
     1.upto 5 do |i|
       FactoryGirl.create :metro, name: "Metro #{i}", code: "C#{i}"
     end
 
-    get :index
+    get :index#, format: :json
     # expect(response).to be_successful
-    expect(response.code).to eq 200
+    expect(response.code.to_i).to eq 200
 
     json = JSON.parse(response.body)
     expect(json.class).to eq Array

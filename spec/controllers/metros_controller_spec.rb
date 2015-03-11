@@ -12,7 +12,7 @@ describe MetrosController do
     # expect(response).to be_successful
     expect(response.code.to_i).to eq 200
 
-    json = JSON.parse(response.body)
+    json = response_json
     expect(json.class).to eq Array
     expect(json.count).to eq 5
     expect(json.last["name"]).to eq "Metro 5"

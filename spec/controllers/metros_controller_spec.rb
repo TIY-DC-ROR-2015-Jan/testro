@@ -1,7 +1,21 @@
 require 'rails_helper'
 
 describe MetrosController do
-  it "can list all the metros"
+  it "can list all the metros" do
+    1.upto 5 do |i|
+      Metro.create! name: "Metro #{i}", code: "C#{i}"
+    end
+
+    get :index
+    # expect(response).to be_successful
+    expect(response.code).to eq 200
+
+    json = JSON.parse(response.body)
+    expect(json.class).to eq Array
+    expect(json.count).to eq 5
+    expect(json.last["name"]).to eq "Metro 5"
+  end
+
   it "can list favorited metros"
   it "can favorite metros"
   it "can unfavorite metros"

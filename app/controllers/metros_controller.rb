@@ -1,10 +1,12 @@
 class MetrosController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+
   def index
     @metros = Metro.all
   end
 
   def favorite
-    metro = Metro.find_by_code params[:station_code]
+    metro = Metro.where(code: params[:station_code]).first!
     current_user.add_favorite_metro metro
     head :ok
   end

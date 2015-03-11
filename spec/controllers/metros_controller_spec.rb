@@ -18,7 +18,7 @@ describe MetrosController do
     expect(json.last["name"]).to eq "Metro 5"
   end
 
-  fit "can favorite metros" do
+  it "can favorite metros" do
     user = FactoryGirl.create :user
     login user
 
@@ -33,15 +33,17 @@ describe MetrosController do
     user = FactoryGirl.create :user
     login user
 
-    post :favorite, station_code: "NOTASTATION"
-    expect(response.code.to_i).to eq 404
+    expect do
+      post :favorite, station_code: "NOTASTATION"
+    end.to raise_error ActiveRecord::RecordNotFound
   end
 
   it "requires login before favoriting" do
     metro = FactoryGirl.create :metro
 
     post :favorite, station_code: metro.code
-    expect(response.code.to_i).to eq 401
+    expect(flash["alert"]).to include "sign in or sign up"
+    expect(response.code.to_i).to eq 302
   end
 
   it "can list favorited metros"

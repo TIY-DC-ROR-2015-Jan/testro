@@ -4,8 +4,8 @@ class MetrosController < ApplicationController
   end
 
   def favorite
-    metro = Metro.find_by_code params[:code]
-    current_user.add_favorite_station metro
+    metro = Metro.find_by_code params[:station_code]
+    current_user.add_favorite_metro metro
     head :ok
   end
 end

@@ -18,7 +18,7 @@ describe MetrosController do
     expect(json.last["name"]).to eq "Metro 5"
   end
 
-  it "can favorite metros" do
+  fit "can favorite metros" do
     user = FactoryGirl.create :user
     login user
 

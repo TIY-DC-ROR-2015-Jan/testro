@@ -4,6 +4,6 @@ class BusesController < ApplicationController
 
   def index
     @user = User.new email: "<script>alert('Gotchya!');</script>"
-    @buses = BusStop.all.limit 10
+    @buses = BusStop.page(params[:page])
   end
 end

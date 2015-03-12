@@ -19,6 +19,9 @@ gem 'haversine'
 
 gem 'slim-rails'
 
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
+
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'

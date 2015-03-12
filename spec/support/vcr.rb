@@ -7,7 +7,7 @@ RSpec.configure do |c|
   c.around :each, vcr: true do |example|
     example_description = example.metadata[:full_description]
     cassette_name = example_description.gsub(/\s+/, '_').downcase
-    VCR.use_cassette cassette_name do
+    VCR.use_cassette cassette_name, re_record_interval: 7.days do
       example.run
     end
   end

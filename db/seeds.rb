@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#User.create(email: "admin@example.com", password: "password")
+
+print "Pulling Metro stops ... "
+Metro.sync_from_api!
+puts "Done. Added #{Metro.count} stops."

@@ -1,0 +1,16 @@
+h1 Buses
+
+p= @user.email
+
+table.table.table-striped.table-hover
+  thead
+    tr
+      th Name
+      th ID
+      th Location
+  tbody
+    - @buses.each do |bus|
+      tr
+        td= bus.name
+        td= bus.stop_id
+        td= "(#{bus.latitude}°, #{bus.longitude}°)"

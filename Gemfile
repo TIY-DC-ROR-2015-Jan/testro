@@ -17,8 +17,11 @@ gem 'httparty'
 
 gem 'haversine'
 
+gem 'slim-rails'
+
 group :development, :test do
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'factory_girl_rails'
   gem 'pry-rails'
   gem 'quiet_assets'

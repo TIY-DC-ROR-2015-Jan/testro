@@ -2,6 +2,13 @@ class BikeStation
   attr_reader :bike_share_id, :location, :available, :open
 
   def self.closest_to opts={}
+    lat, long = opts.fetch(:lat), opts.fetch(:long)
+    limit  = opts[:limit] || 50
+    radius = opts[:radius] || Float::INFINITY
+    BikeStation.all.
+      sort_by { |s| s.distance_to lat, long }.
+      first(limit).
+      select { |s| s.distance_to(lat, long) < radius }
   end
 
   def self.all

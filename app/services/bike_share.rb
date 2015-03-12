@@ -3,6 +3,7 @@ class BikeShare
   base_uri "http://www.capitalbikeshare.com"
 
   def self.stations
-    get("/data/stations/bikeStations.xml")["stations"]["station"]
+    r = get("/data/stations/bikeStations.xml")
+    r["stations"]["station"]
   end
 end

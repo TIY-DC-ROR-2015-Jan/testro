@@ -19,14 +19,16 @@ describe BikeStation do
     expect(station.distance_to 38, -77).to be < 1
   end
 
-  it "can look up by geo location" do
-    near = BikeStation.closest_to lat: @lat, long: @long, limit: 25
-    nearest = near.first
+  fit "can look up by geo location" do
+    VCR.use_cassette "can_look_up_by_geo_location" do
+      near = BikeStation.closest_to lat: @lat, long: @long, limit: 25
+      nearest = near.first
 
-    expect(near.count).to eq 25
-    expect(nearest.location).to eq "23rd & Crystal Dr"
-    expect(nearest.available).to be >= 0
-    expect(nearest.open).to be >= 0
+      expect(near.count).to eq 25
+      expect(nearest.location).to eq "23rd & Crystal Dr"
+      expect(nearest.available).to be >= 0
+      expect(nearest.open).to be >= 0
+    end
   end
 
   it "can limit hits by radius" do

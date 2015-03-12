@@ -26,7 +26,7 @@ class BikeStation
     @long = Float api_data.fetch("long")
   end
 
-  def distance_to lat, long
-    Haversine.distance(@lat, @long, Float(lat), Float(long)).to_miles
-  end
+  include Locatable
+  def latitude;  @lat;  end
+  def longitude; @long; end
 end

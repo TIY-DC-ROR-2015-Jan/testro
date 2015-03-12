@@ -1,4 +1,6 @@
 class BusStop < ActiveRecord::Base
+  include Concerns::Locatable
+
   validates_presence_of :name, :stop_id, :latitude, :longitude
   validates_uniqueness_of :stop_id
 

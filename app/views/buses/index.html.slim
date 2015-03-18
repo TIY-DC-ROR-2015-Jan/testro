@@ -4,7 +4,7 @@ h1 Buses
 
 /p= @user.email
 
-table.table.table-striped.table-hover
+table.table.table-striped.table-hover.favorite-buses-table
   thead
     tr
       th
@@ -17,11 +17,11 @@ table.table.table-striped.table-hover
         td
           - if @favorites.include? bus.id
             = form_tag unfavorite_bus_path(bus), method: :delete
-              button.btn.btn-danger
+              button.btn.btn-danger data-id=bus.id data-action="unfavorite"
                 = icon :remove
           - else
             = form_tag favorite_bus_path(bus), method: :post
-              button.btn.btn-default
+              button.btn.btn-default data-id=bus.id data-action="favorite"
                 = icon :star
         td= bus.name
         td= bus.stop_id

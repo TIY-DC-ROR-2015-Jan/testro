@@ -17,7 +17,8 @@ class BusesController < ApplicationController
     FavoriteBusStop.
       where(user: current_user, bus_stop: stop).
       first_or_create!
-    redirect_to :back, success: "Favorite saved"
+    #redirect_to :back, success: "Favorite saved"
+    head :ok
   end
 
   def unfavorite
@@ -25,6 +26,7 @@ class BusesController < ApplicationController
       favorite_bus_stops.
       where(bus_stop_id: params[:id]).
       delete_all
-    redirect_to :back, danger: "Favorite deleted"
+    #redirect_to :back, danger: "Favorite deleted"
+    head :ok
   end
 end

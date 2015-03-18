@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
 
   has_many :favorites
   has_many :favorite_metros, through: :favorites, source: :metro
+  # ^- this disparity is confusing -v
+  has_many :favorite_bus_stops
+  has_many :bus_stops, through: :favorite_bus_stops
 
   def add_favorite_metro m
     # favories.where(metro: m).first_or_create!

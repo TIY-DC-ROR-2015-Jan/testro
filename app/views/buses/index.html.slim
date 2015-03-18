@@ -2,17 +2,27 @@ h1 Buses
 
 = paginate @buses, theme: 'twitter-bootstrap-3'
 
-p= @user.email
+/p= @user.email
 
 table.table.table-striped.table-hover
   thead
     tr
+      th
       th Name
       th ID
       th Location
   tbody
     - @buses.each do |bus|
       tr
+        td
+          - if @favorites.include? bus.id
+            = form_tag unfavorite_bus_path(bus), method: :delete
+              button.btn.btn-danger
+                = icon :remove
+          - else
+            = form_tag favorite_bus_path(bus), method: :post
+              button.btn.btn-default
+                = icon :star
         td= bus.name
         td= bus.stop_id
         td= "(#{bus.latitude}°, #{bus.longitude}°)"

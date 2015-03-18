@@ -1,7 +1,7 @@
 class BusStop < ActiveRecord::Base
   include Concerns::Locatable
 
-  paginates_per 10
+  paginates_per 50
 
   validates_presence_of :name, :stop_id, :latitude, :longitude
   validates_uniqueness_of :stop_id
